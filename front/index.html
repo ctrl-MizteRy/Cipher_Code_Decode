@@ -17,10 +17,9 @@
     <main>
         <form class="get-message">
             <div class="code-types">
-                <select onblur="this.size=1;" onchange="this.size=1; this.blur();" id="cipher-type" name="options"
-                    required>
+                <select id="cipher-type" name="options" required>
                     <option value="" selected>Select one of the ciphers</option>
-                    <option value="ceasar">Ceasar</option>
+                    <option value="caesar">Ceasar</option>
                     <option value="atbash">Atbash</option>
                     <option value="a1z26">A1Z26</option>
                     <option value="fence">Rail Fence</option>
@@ -35,14 +34,10 @@
                 </select>
                 <button type="button" id="select_cipher">Select</button>
             </div>
-            <div>
-                <label id="encode-key-container" hidden>
-                    Encode Key:
-                    <input type="text" id="encode-cipher-key" placeholder="Enter the encoding key here...">
+            <div class="cipherKey">
+                <label id="key-container" hidden>
+                    <input type="" id="cipher-key" value="">
                 </label>
-                <label id="decode-key-container" hidden>
-                    Decode Key:
-                    <input type="text" id="decode-key" placeholder="Enter your decode key if know" </label>
             </div>
             <div class="messages">
                 <label for="text-msg">

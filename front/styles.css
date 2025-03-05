@@ -14,13 +14,20 @@ body {
     opacity: 1;
 }
 
-#encode-key-container,
-#decode-key-container {
-    font-size: 12px;
-    margin-left: -125px;
+#key-container {
+    font-size: 13px;
+    margin-left: -100px;
 }
 
-#encode-key-container input,
-#decode-key-container input {
-    width: 200px;
+#key-container input {
+    width: 400px;
+}
+
+#ans-text {
+    margin-left: -62px;
+}
+
+h3 {
+    margin-left: -30px;
+    text-align: center;
 }
