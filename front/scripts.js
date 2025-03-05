@@ -58,7 +58,7 @@ function printoutDecode(msg) {
 
 
 function connectBackend(keyVal) {
-    fetch("http://localhost:8080/process", {
+    fetch("https://ctrl-miztery.github.io/Cipher_Code_Decode/process", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             text: msg.value,

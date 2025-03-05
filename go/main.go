@@ -18,5 +18,5 @@ func main() {
 	fs := http.FileServer(http.Dir(path))
 	http.Handle("/", fs)
 	http.HandleFunc("/process", httprequest.HandleMessage)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe("https://ctrl-miztery.github.io/Cipher_Code_Decode/", nil))
 }
