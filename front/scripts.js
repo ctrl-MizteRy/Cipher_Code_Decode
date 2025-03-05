@@ -64,6 +64,7 @@ function connectBackend(keyVal) {
             text: msg.value,
             key: keyVal,
             cod: messageType.value,
+            cipher: cipherType.value,
         })
     })
         .then(response => response.json())
@@ -75,14 +76,19 @@ function connectBackend(keyVal) {
 /**
  * @param {string} key
  * @param {string} cipher_type 
+ * @param {string} cod 
  * @returns {boolean}
  **/
-function checkCiphperKey(cipher_type, key) {
+function checkCiphperKey(cipher_type, key, cod) {
     switch (cipher_type) {
         case "caesar":
         case "fence":
-            let val = parseInt(key);
-            return !isNaN(val)
+            if (cod == "code") {
+                let val = parseInt(key);
+                return !isNaN(val)
+            } else {
+                return true
+            }
         case "substitution":
             return key.length == 26;
         default:
@@ -94,16 +100,17 @@ function submitButtonRespone() {
     let cipher_type = cipherType.value;
     let key = document.getElementById('message-key');
     let keyVal = (key != null) ? key.value : "";
+    let cod = messageType.value;
 
     if (cipher_type == "" || messageType.value == "") {
         alert(`Please select the type of cipher you want to use and code or decode option
 `);
     } else if (ciphers.includes(cipher_type) &&
-        keyVal == "") {
+        keyVal == "" && cod == "code") {
         alert("Please input the cipher key")
     } else {
 
-        if (checkCiphperKey(cipher_type, keyVal)) {
+        if (checkCiphperKey(cipher_type, keyVal, cod)) {
             connectBackend(keyVal)
         } else {
             alert(`Please input the correct format keyvalue for ${cipher_type}`)

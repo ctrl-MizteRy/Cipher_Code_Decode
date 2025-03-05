@@ -1,6 +1,7 @@
 package httprequest
 
 import (
+	"cipher/decode"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -8,6 +9,9 @@ import (
 
 type MessageRequest struct {
 	Content string `json:"text"`
+	Key     string `json:"key"`
+	Cod     string `json:"cod"`
+	Cipher  string `json: "cipher"`
 }
 
 type MessageRespone struct {
@@ -37,7 +41,8 @@ func HandleMessage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	repsone := MessageRespone{
-		Result: "message:" + msg.Content,
+		Result: "message:" + decode.Decode(
+			msg.Content, msg.Key, msg.Cipher, msg.Cod),
 	}
 
 	fmt.Println(repsone)
