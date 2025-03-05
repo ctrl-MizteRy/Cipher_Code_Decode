@@ -14,9 +14,10 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprintf("Could not get into the home directorry %v", home))
 	}
-	path := filepath.Join(home, "Desktop/Projects/HTML/Cipher/front")
+	path := filepath.Join(home, "Desktop/Projects/HTML/Cipher/front/")
 	fs := http.FileServer(http.Dir(path))
 	http.Handle("/", fs)
 	http.HandleFunc("/process", httprequest.HandleMessage)
-	log.Fatal(http.ListenAndServe("https://ctrl-miztery.github.io/Cipher_Code_Decode/", nil))
+	fmt.Println("Starting server at 8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

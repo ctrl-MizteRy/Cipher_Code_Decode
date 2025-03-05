@@ -3,7 +3,6 @@ package httprequest
 import (
 	"cipher/decode"
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
 
@@ -45,7 +44,6 @@ func HandleMessage(w http.ResponseWriter, r *http.Request) {
 			msg.Content, msg.Key, msg.Cipher, msg.Cod),
 	}
 
-	fmt.Println(repsone)
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(repsone)
 }
