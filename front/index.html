@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Decipher</title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Code or decode your messages
+        </h1>
+    </header>
+    <main>
+        <form class="get-message">
+            <div class="code-types">
+                <select onblur="this.size=1;" onchange="this.size=1; this.blur();" id="cipher-type" name="options"
+                    required>
+                    <option value="" selected>Select one of the ciphers</option>
+                    <option value="ceasar">Ceasar</option>
+                    <option value="atbash">Atbash</option>
+                    <option value="a1z26">A1Z26</option>
+                    <option value="fence">Rail Fence</option>
+                    <option value="binary">Binary</option>
+                    <option value="hex">Hex</option>
+                    <option value="substitution">Substitution</option>
+                </select>
+                <select id="code-or-decode" name="options" required>
+                    <option value="" selected>Select one of the options</option>
+                    <option value="code">Code</option>
+                    <option value="decode">Decode</option>
+                </select>
+                <button type="button" id="select_cipher">Select</button>
+            </div>
+            <div>
+                <label id="encode-key-container" hidden>
+                    Encode Key:
+                    <input type="text" id="encode-cipher-key" placeholder="Enter the encoding key here...">
+                </label>
+                <label id="decode-key-container" hidden>
+                    Decode Key:
+                    <input type="text" id="decode-key" placeholder="Enter your decode key if know" </label>
+            </div>
+            <div class="messages">
+                <label for="text-msg">
+                    <textarea id="text-msg" rows="8" cols="75" placeholder="Input your message here..."
+                        name="text-msg"></textarea>
+                    <button type="submit" id="submit-msg">Submit</button>
+                </label>
+            </div>
+            <div id="answer">
+            </div>
+        </form>
+    </main>
+    <script src="scripts.js">
+    </script>
+</body>
+
+</html>

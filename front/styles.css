@@ -1,0 +1,26 @@
+body {
+    background-color: #717171;
+    margin: 1em auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.messages #text-msg {
+    color: black;
+}
+
+.messages #text-msg::placeholder {
+    color: gray;
+    opacity: 1;
+}
+
+#encode-key-container,
+#decode-key-container {
+    font-size: 12px;
+    margin-left: -125px;
+}
+
+#encode-key-container input,
+#decode-key-container input {
+    width: 200px;
+}
