@@ -57,22 +57,6 @@ function printoutDecode(msg) {
 }
 
 
-function connectBackend(keyVal) {
-    fetch("http://localhost:8080/process", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            text: msg.value,
-            key: keyVal,
-            cod: messageType.value,
-            cipher: cipherType.value,
-        })
-    })
-        .then(response => response.json())
-        .then(data => printoutDecode(data))
-        .catch(error => console.error("Error:", error));
-}
-
-
 /**
  * @param {string} key
  * @param {string} cipher_type 
@@ -85,9 +69,13 @@ function checkCiphperKey(cipher_type, key, cod) {
         case "fence":
             if (cod == "code") {
                 let val = parseInt(key);
-                return !isNaN(val)
+                if (!isNaN(val) && cipher_type == "fence" && val <= 0) {
+                    return false;
+                } else {
+                    return !isNaN(val);
+                }
             } else {
-                return true
+                return true;
             }
         case "substitution":
             return key.length == 26;
@@ -107,13 +95,31 @@ function submitButtonRespone() {
 `);
     } else if (ciphers.includes(cipher_type) &&
         keyVal == "" && cod == "code") {
-        alert("Please input the cipher key")
+        alert("Please input the cipher key");
+        getCipherKey();
     } else {
 
         if (checkCiphperKey(cipher_type, keyVal, cod)) {
-            connectBackend(keyVal)
+            connectBackend(keyVal);
         } else {
-            alert(`Please input the correct format keyvalue for ${cipher_type}`)
+            alert(`Please input the correct format keyvalue for ${cipher_type}`);
+            getCipherKey();
         }
     }
 }
+
+function connectBackend(keyVal) {
+    fetch("http://localhost:8080/process", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            text: msg.value,
+            key: keyVal,
+            cod: messageType.value,
+            cipher: cipherType.value,
+        })
+    })
+        .then(response => response.json())
+        .then(data => printoutDecode(data))
+        .catch(error => console.error("Error:", error));
+}
+
